@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<a class="p-2 text-dark" href="/employee/add">Добавить</a>
+<div class="container mt-5">
+ <h1>Блог сайта</h1>
+    <table class="table mt-5 text-center">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>department</th>
+            <th>dateOfBirth</th>
+            <th>salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div th:each="employee : ${employees}">
+            <tr>
+                <td><h4 th:text="${employee.name}"/></td>
+                <td><h4 th:text="${employee.department.departmentName}"/></td>
+                <td><h4 th:text="${employee.dateOfBirth}"/></td>
+                <td><h4 th:text="${employee.salary}"/></td>
+                <td><a th:href="'/employee/' + ${employee.id} + '/edit'" class="btn btn-warning">Редактровать</a></td>
+                <td><form th:action="'/employee/' + ${employee.id} + '/delete'" method="post">
+                    <button class="btn btn-danger" type="submit">Удалить</button>
+                </form> </td>
+            </tr>
+        </div>
+        <tbody>
+    </table>
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

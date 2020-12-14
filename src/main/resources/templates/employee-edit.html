@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="container mt-5 mb-5">
+    <h1>Редактровать работника</h1>
+    <div th:each="employee : ${employee}">
+     <form method="post">
+         <input type="text" th:value="${employee.name}" name="name" placeholder="name" class="form-control"><br>
+         <select name="departmentName" class="form-select" aria-label="Default select example">
+             <div th:each="department : ${departments}">
+                 <option th:text="${department.departmentName}" th:value="${department.departmentName}"></option>
+             </div><br>
+         </select>
+         <input type="text" th:value="${employee.dateOfBirth}" name="dateOfBirth" placeholder="dateOfBirth" class="form-control"><br>
+         <input type="text" th:value="${employee.salary}" name="salary" placeholder="salary" class="form-control"><br>
+
+         <button class="btn btn-success" type="submit">Изменить работника</button>
+     </form>
+    </div>
+
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
